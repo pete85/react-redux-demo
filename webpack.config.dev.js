@@ -9,16 +9,21 @@ module.exports = {
   target: "web",
   devtool: "cheap-module-source-map",
   entry: "./src/index",
+  infrastructureLogging: {
+    level: 'warn', // Adjust the logging level as needed (e.g., 'info', 'warn', 'error')
+  },
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
     filename: "bundle.js"
   },
   devServer: {
-    stats: "minimal",
-    overlay: true,
+    client: {
+      overlay: true, // or { warnings: false, errors: true } for more control
+    },
+    port: 3000,
     historyApiFallback: true,
-    disableHostCheck: true,
+    allowedHosts: 'all',
     headers: {"Access-Control-Allow-Origin": "*"},
     https: false
   },
