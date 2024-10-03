@@ -37,9 +37,10 @@ module.exports = {
       {
         test: /\.scss$/, // Match both .scss and .sass files
         use: [
-          "style-loader", // Injects styles into the DOM
-          "css-loader",   // Translates CSS into CommonJS
-          "sass-loader"   // Compiles Sass to CSS
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       },
       {

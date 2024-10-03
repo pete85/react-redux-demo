@@ -1,6 +1,14 @@
+@import "base";
+@import "table";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.coursesTable {
+
+}
+
 #app {
     max-width: 850px;
     margin: 0 auto;

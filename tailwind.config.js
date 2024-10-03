@@ -5,10 +5,15 @@ module.exports = {
   },
   prefix: 'tw-',
   content: [
-    "./src/**/*.{html,ts, js, jsx}",
+    "./src/**/*.{html,ts, js, jsx, tsx}",
+    "./index.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        slate: require('tailwindcss/colors').slate,
+      },
+    },
   },
   plugins: [],
 }
