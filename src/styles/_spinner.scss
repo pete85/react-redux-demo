@@ -1,42 +1,141 @@
-/* via https://projects.lukehaas.me/css-loaders/ */
-.loader,
-.loader:after {
-  border-radius: 50%;
-  width: 10em;
-  height: 10em;
+.loader-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
 }
-.loader {
-  margin: 60px auto;
-  font-size: 10px;
+
+@keyframes arrow-spin {
+  100% {
+    transform: rotate(179deg);
+  }
+}
+
+@-webkit-keyframes arrow-spin {
+  100% {
+    -webkit-transform: rotate(179deg);
+  }
+}
+
+.pre-load-spinner,
+.pre-load-spinner *,
+.pre-load-spinner *:before,
+.pre-load-spinner *:after {
+  box-sizing: border-box;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.pre-load-spinner {
   position: relative;
-  text-indent: -9999em;
-  border-top: 1.1em solid rgba(255, 151, 0, 0.2);
-  border-right: 1.1em solid rgba(255, 151, 0, 0.2);
-  border-bottom: 1.1em solid rgba(255, 151, 0, 0.2);
-  border-left: 1.1em solid #ff9700;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: load8 1.1s infinite linear;
-  animation: load8 1.1s infinite linear;
+  margin: 0 auto;
+  height: 150px;
+  width: 150px;
 }
-@-webkit-keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+
+.pre-load-spinner .straight,
+.pre-load-spinner .curve {
+  position: absolute;
+  top: 17.5%;
+  left: 17.5%;
+  width: 65%;
+  height: 65%;
+  border-radius: 100%;
+  animation: arrow-spin 0.85s cubic-bezier(0.2, 0.8, 0.9, 0.1) infinite;
+  -webkit-animation: arrow-spin 0.85s cubic-bezier(0.2, 0.8, 0.9, 0.1) infinite;
 }
-@keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+
+.pre-load-spinner .straight:before,
+.pre-load-spinner .straight:after {
+  content: '';
+  position: absolute;
+  width: 15%;
+  border-bottom: 3px solid #eee;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.pre-load-spinner .straight:before {
+  top: 5px;
+  left: 5px;
+}
+
+.pre-load-spinner .straight:after {
+  bottom: 5px;
+  right: 5px;
+}
+
+.pre-load-spinner .curve:before,
+.pre-load-spinner .curve:after {
+  content: '';
+  position: absolute;
+  width: 45px;
+  height: 10px;
+  border: solid 3px transparent;
+  border-top-color: #eee;
+  border-radius: 50%/10px 10px 0 0;
+  z-index: 90001;
+}
+
+.pre-load-spinner .curve:before {
+  transform: rotate(-63deg) translateX(-27px) translateY(-4px);
+  -webkit-transform: rotate(-63deg) translateX(-27px) translateY(-4px);
+}
+
+.pre-load-spinner .curve:after {
+  bottom: 5px;
+  right: 5px;
+  transform: rotate(115deg) translateX(-26px) translateY(-12px);
+  -webkit-transform: rotate(115deg) translateX(-26px) translateY(-12px);
+}
+
+.pre-load-spinner .center {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  border-radius: 100%;
+  border: 3px solid #eee;
+}
+
+.pre-load-spinner .inner {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+  animation: arrow-spin 0.85s cubic-bezier(0.2, 0.8, 0.9, 0.1) infinite reverse;
+  -webkit-animation: arrow-spin 0.85s cubic-bezier(0.2, 0.8, 0.9, 0.1) infinite reverse;
+}
+
+.pre-load-spinner .inner:before,
+.pre-load-spinner .inner:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-bottom-width: 11px;
+  border-bottom-color: #eee;
+}
+
+.pre-load-spinner .inner:before {
+  top: 12px;
+  left: 12px;
+  transform: rotate(128deg);
+  -webkit-transform: rotate(128deg);
+}
+
+.pre-load-spinner .inner:after {
+  bottom: 12px;
+  right: 12px;
+  transform: rotate(-48deg);
+  -webkit-transform: rotate(-48deg);
 }

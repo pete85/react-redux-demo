@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
 import Header from "./common/Header";
@@ -9,15 +9,17 @@ import ManageCoursePage from "./courses/ManageCoursePage";
 
 export default function App() {
     return (
-        <div className="container-fluid">
-            <Header />
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/courses" element={<CoursesPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/course/:slug?" element={<ManageCoursePage />} />
-                <Route element={<PageNotFound />} />
-            </Routes>
+        <div className="tw-flex tw-flex-col tw-flex-auto">
+            <Header/>
+            <div className="tw-flex tw-flex-col tw-flex-auto page-container">
+                <Routes>
+                    <Route path="/" element={<HomePage/>}/>
+                    <Route path="/courses" element={<CoursesPage/>}/>
+                    <Route path="/about" element={<AboutPage/>}/>
+                    <Route path="/course/:slug?" element={<ManageCoursePage/>}/>
+                    <Route element={<PageNotFound/>}/>
+                </Routes>
+            </div>
         </div>
     );
 }

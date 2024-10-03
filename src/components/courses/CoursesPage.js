@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import CourseList from "./CourseList";
 import {Navigate} from "react-router-dom";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 import Spinner from "../common/Spinner";
 
 class CoursesPage extends React.Component {
@@ -36,32 +36,33 @@ class CoursesPage extends React.Component {
         try {
             await this.props.actions.deleteCourse(course);
         } catch (error) {
-            toast.error("Delete failed. " + error.message, { autoClose: false });
+            toast.error("Delete failed. " + error.message, {autoClose: false});
         }
     };
 
     render() {
         return (
             <>
-                {this.state.redirectToAddCoursePage && <Navigate to="/course" />}
-                <h2>Courses</h2>
+                {this.state.redirectToAddCoursePage && <Navigate to="/course"/>}
                 {this.props.loading ? (
-                    <Spinner />
+                    <div className="spinner-container tw-flex tw-flex-auto tw-flex-col">
+                        <Spinner/>
+                    </div>
                 ) : (
-                    <>
-                        <button
-                            style={{ marginBottom: 20 }}
-                            className="btn btn-primary add-course"
-                            onClick={() => this.setState({ redirectToAddCoursePage: true })}
-                        >
-                            Add Course
-                        </button>
+                    <div>
+                        <div className="courses-header">
+                            <h2>Courses</h2>
+                            <button className="app-btn app-btn-primary"
+                                    onClick={() => this.setState({redirectToAddCoursePage: true})}>
+                                Add Course
+                            </button>
+                        </div>
 
                         <CourseList
                             onDeleteClick={this.handleDeleteCourse}
                             courses={this.props.courses}
                         />
-                    </>
+                    </div>
                 )}
             </>
         );
