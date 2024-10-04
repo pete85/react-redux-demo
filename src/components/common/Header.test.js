@@ -12,5 +12,4 @@ it("contains 3 links", () => {
 
   screen.getByRole("link", { name: "Home" });
   screen.getByRole("link", { name: "Courses" });
-  screen.getByRole("link", { name: "About" });
 });

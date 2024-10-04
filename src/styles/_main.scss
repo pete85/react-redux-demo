@@ -1,3 +1,5 @@
+@import "mixins";
+
 .app-btn {
   border-radius: 8px;
   padding: 10px 20px;
@@ -35,4 +37,36 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 0 30px 0;
+}
+
+.home-header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.home-intro {
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: theme('colors.slate.200');
+  border-radius: 8px;
+  h4 {
+    font-size: 1.8rem !important;
+    line-height: 3rem !important;
+  }
+}
+
+.useful-links {
+  width: 90%;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: theme('colors.slate.200');
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 20px;
 }

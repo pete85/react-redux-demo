@@ -55,6 +55,15 @@ module.exports = {
         use: ["babel-loader", "eslint-loader"]
       },
       {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",  // Optional, if you're using PostCSS
+          "sass-loader" // Compiles Sass to CSS
+        ]
+      },
+      {
         test: /(\.css)$/,
         use: [
           MiniCssExtractPlugin.loader,
