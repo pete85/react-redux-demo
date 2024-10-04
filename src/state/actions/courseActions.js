@@ -44,6 +44,7 @@ export function saveCourse(course) {
                     : dispatch(createCourseSuccess(savedCourse));
             })
             .catch(error => {
+                dispatch(apiCallError(error));
                 throw error;
             });
     };
