@@ -3,6 +3,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackBundleAnalyzer = require("webpack-bundle-analyzer");
+const dotenv = require("dotenv");
+
+// Load environment variables from .env file
+dotenv.config();
 
 process.env.NODE_ENV = "production";
 module.exports = {
@@ -25,15 +29,14 @@ module.exports = {
     }),
 
     new webpack.DefinePlugin({
-      // This global makes sure React is built in prod mode.
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      "process.env.API_URL": JSON.stringify("http://localhost:3001")
+      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL) // Inject BASE_URL from .env
     }),
+
     new HtmlWebpackPlugin({
       template: "src/index.html",
       favicon: "src/favicon.ico",
       minify: {
-        // see https://github.com/kangax/html-minifier#options-quick-reference
         removeComments: true,
         collapseWhitespace: true,
         removeRedundantAttributes: true,
@@ -59,8 +62,8 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-          "postcss-loader",  // Optional, if you're using PostCSS
-          "sass-loader" // Compiles Sass to CSS
+          "postcss-loader",
+          "sass-loader"
         ]
       },
       {
@@ -69,15 +72,13 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: {
-              sourceMap: true
-            }
+            options: { sourceMap: true }
           },
           {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: [() => [require("cssnano")]]
+                plugins: [require("cssnano")]
               },
               sourceMap: true
             }

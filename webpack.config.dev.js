@@ -1,6 +1,10 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const dotenv = require("dotenv");
+
+// Load environment variables from the .env file
+dotenv.config();
 
 process.env.NODE_ENV = "development";
 
@@ -21,7 +25,8 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.API_URL": JSON.stringify("http://localhost:3001")
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL) // Ensures BASE_URL is available in the code
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
@@ -35,19 +40,19 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.scss$/, // Match both .scss and .sass files
+        test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
+          "style-loader",
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
+        ]
       },
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader", "eslint-loader"]
-      },
+      }
     ]
   }
 };

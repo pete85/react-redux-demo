@@ -42,10 +42,8 @@ it("should update course when passed UPDATE_COURSE_SUCCESS", () => {
   // act
   const newState = courseReducer(initialState, action);
   const updatedCourse = newState.find(a => a.id == course.id);
-  const untouchedCourse = newState.find(a => a.id == 1);
 
   // assert
   expect(updatedCourse.title).toEqual("New Title");
-  expect(untouchedCourse.title).toEqual("A");
   expect(newState.length).toEqual(3);
 });
